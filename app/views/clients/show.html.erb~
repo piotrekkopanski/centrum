@@ -1,0 +1,58 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nip:</strong>
+  <%= @client.NIP %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @client.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @client.address %>
+</p>
+
+<p>
+  <strong>Mailing address:</strong>
+  <%= @client.mailing_address %>
+</p>
+
+<p>
+  <strong>Term:</strong>
+  <%= @client.term %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @client.notes %>
+</p>
+<div class="detailsForm customerForm">
+                <table>
+           <tr>
+        <th><label >NIP</label>:</th>
+        <td ><%= @client.NIP %></td>
+          </tr>
+        <tr>
+        <th><label >Imie i nazwisko lub nazwa firmy:</label>:</th>
+        <td ><%= @client.name %></td>
+          </tr>
+       <th><label>Adres</label>:</th>
+        <td ><%= @client.address %></td>
+          </tr>
+        <tr>
+        <th><label >Mailing address:</label>:</th>
+        <td ><%= @client.mailing_address %></td>
+          </tr>
+        <th><label>Termin</label>:</th>
+        <td ><%= @client.term %></td>
+          </tr>
+        <tr>
+        <th><label >Uwagi:</label>:</th>
+        <td ><%= @client.notes %></td>
+          </tr>
+</table>
+<%= link_to 'Edit', edit_client_path(@client) %> |
+<%= link_to 'Back', clients_path %>

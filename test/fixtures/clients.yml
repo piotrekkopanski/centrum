@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  NIP: 1
+  name: MyString
+  address: MyText
+  mailing_address: MyText
+  term: 1
+  notes: MyText
+
+two:
+  NIP: 1
+  name: MyString
+  address: MyText
+  mailing_address: MyText
+  term: 1
+  notes: MyText

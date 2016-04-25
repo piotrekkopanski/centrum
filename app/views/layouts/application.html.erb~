@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head> <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("button").click(function(){
+        $("div").text($("form").serialize());
+    });
+});
+</script><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/text.css?v=1455747339" />
+    <link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/960.css" />
+    <link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/style.css?v=1455747339" />
+    <link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/jquery-ui/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="//static.centrumfaktur.pl/css/jquery.fancybox-1.3.4.css" />
+    <script type="text/javascript">
+            var STATIC_URL = "//static.centrumfaktur.pl/";
+        </script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.json.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.table-thingie.js?v=1455747339"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.form-defaults.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.blockUI.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/ui/i18n/ui.datepicker-pl.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/date_locale_pl.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/forms.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery-ajax-validation.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/validation.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.ajaxQueue.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.bgiframe.min.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/fixed_nav.js"></script>
+        
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.fancybox-1.3.4.pack.js"></script>
+        <script type="text/javascript" src="//static.centrumfaktur.pl/js/jquery.bookmark.js"></script>
+  <title>Centrum</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag :defaults, "nested_form" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="col-md-12">
+<body class="startTab">
+
+<ul id="menu">
+            <li id="menu-start"><a href="/"><span></span>Podsumowanie</a></li>
+            <li id="menu-estimates"><a href="/oferty/"><span></span>Oferty</a></li>
+            <li id="menu-invoices"><a href="/invoices/"><span></span>Faktury</a></li>
+            <li id="menu-customers"><a href="/clients/"><span></span>Klienci</a></li>
+            <li id="menu-stats"><a href="/statystyka/"><span></span>Raporty</a></li>
+            <li id="menu-settings"><a href="/ustawienia/"><span></span>Ustawienia</a></li>
+            <li id="menu-users"><a href="/uzytkownicy/"><span></span>Pracownicy</a></li>
+        </ul></div>
+
+ <div class="col-md-12">
+
+   <div class="col-md-2">
+</div>
+  <div class="col-md-8">
+<%= yield %>
+</div>
+ <div class="col-md-2">
+</div>
+
+</body>
+</html>

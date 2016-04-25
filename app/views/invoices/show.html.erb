@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Podsumowanie:</strong>
+  <%= @invoice.summary %>
+</p>
+
+<p>
+  <strong>Facture:</strong>
+  <%= @invoice.facture %>
+</p>
+
+<p>
+  <strong>Date raised:</strong>
+  <%= @invoice.date_raised %>
+</p>
+<%= nested_form_for @invoice do |f| %>
+<p>
+  <strong>Date:</strong>
+  <%= @invoice.date %>
+</p>
+
+<p>
+  <strong>Payment:</strong>
+  <%= @invoice.payment %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @invoice.currency %>
+</p>
+
+<p>
+  <strong>Language:</strong>
+  <%= @invoice.language %>
+</p>
+
+<p>
+  <strong>Pricing model:</strong>
+  <%= @invoice.pricing_model %>
+</p>
+<%= f.fields_for :positions do |position_form| %>
+Nazwa:
+<%= position_form.object.Nazwa %>
+PKWiU
+ <%= position_form.object.PKWiU %>
+Ilość:
+<%= position_form.object.amount %>
+J.m
+<%= position_form.object.unit %>
+Cena netto
+<%= position_form.object.price_unit %>
+Vat:
+<%= position_form.object.VAT %>
+suma:
+<%= '%.2f' % position_form.object.total %>
+sumaaaa<p>
+ <%= @suma=position_form.object.amount*position_form.object.price_unit*position_form.object.VAT*0.01 %> </p>
+suma3
+<%= position_form.object.amount*position_form.object.VAT %>
+<%='%.2f' % 1.23456%><br><%= '%.2f' % @suma %>
+<br>
+<% end %>
+
+<% end %>
+<% @total %>
+ <%= @invoice.summary %>
+<%= link_to 'Edit', edit_invoice_path(@invoice) %> 
+<%= link_to 'Back', invoices_path %><% if @invoice.pricing_model='Brutto' %>
+gg
+<% elsif @invoice.pricing_model=2 %>
+ll
+<% end %>
+
+

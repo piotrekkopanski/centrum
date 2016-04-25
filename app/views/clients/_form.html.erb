@@ -1,0 +1,41 @@
+<%= form_for(@client) do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ <div class="detailsForm customerForm">
+                <table >
+         <tr><th><label >NIP</label>:</th>
+        <td ><%= f.number_field :NIP %></td>
+        </tr>
+         <tr><th><span class="required">*</span><label>Imię i nazwisko lub nazwa firmy</label>::</th>
+        <td ><%= f.text_field :name %></td>
+        </tr>
+        <tr><th><span class="required">*</span><label >Adres</label>:</th>
+        <td ><%= f.text_area :address %></td>
+        </tr>
+         <tr><th><label>Adres korespondencyjny:</label>::</th>
+        <td ><%= f.text_area :mailing_address %></td>
+        </tr>
+        <tr><th><span class="required">*</span><label >Termin</label>:</th>
+        <td ><%= f.number_field :term %></td>
+        </tr>
+         <tr><th><label>Uwagi</label>::</th>
+        <td ><%= f.text_area :notes %></td>
+        </tr>
+</table>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+   
+<% end %>

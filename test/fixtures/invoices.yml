@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  summary: MyText
+  facture: MyText
+  date_raised: MyText
+  date: MyText
+  payment: 1
+  currency: MyString
+  language: MyString
+  pricing_model: MyString
+
+two:
+  summary: MyText
+  facture: MyText
+  date_raised: MyText
+  date: MyText
+  payment: 1
+  currency: MyString
+  language: MyString
+  pricing_model: MyString

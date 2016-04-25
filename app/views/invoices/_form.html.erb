@@ -1,0 +1,135 @@
+<%= nested_form_for  @invoice, :remote => true do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
+
+      <ul>
+      <% @invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Podsumowanie 
+    <%= f.text_area :summary ,:size => "70x1"%>
+  </div>
+  <div class="field">
+    <%= f.label :Faktura      %>
+    <%= f.text_area :facture ,:size => "70x1" %>
+  </div>
+  <div class="field">
+    <%= f.label :data_wystawienia %>
+    <%= f.text_area :date_raised ,:size => "70x1"%>
+  </div>
+  <div class="field">
+    <%= f.label :data_sprzedazy %>
+    <%= f.text_area :date ,:size => "70x1" %>
+  </div>
+  <div class="field">
+    <%= f.label :Termin_płatosci %>
+    <%= f.number_field :payment,:size => "70x1" %>
+  </div>
+  <div class="field">
+    <%= f.label :Waluta %>
+    <%= f.text_field :currency,:size => "70x1" %>
+  </div>
+  <div class="field">
+    <%= f.label :wersja_językowa %>
+    <%= f.text_field :language %>
+  </div>
+  <div class="field">
+    Typ faktury 
+    <%= f.select :pricing_model, [['Brutto', 1], ['Netto', 2]] %>
+  </div>
+
+<strong>Pricing model:</strong>
+  <%= @invoice.pricing_model %>
+vat: <div id='vat'>
+
+</div><dip></dip>
+    
+    
+<%= f.fields_for :positions do |position_form| %>
+w:mmmmnn: <%= @s=@s+1 %><%= @s %>
+ <table >
+     <thead>
+         <tr class="df"><th><label >Nazwa:</label>:</th>
+        
+        
+         <th><label>PKWiU</label>:</th>
+        
+        
+        <th><label >Ilość</label>:</th>
+        
+        
+        <th><label>J.m.:</label>::</th>
+        
+        
+        <th><label >Cena</label>:</th>
+        
+        
+         <th><label>suma</label>::</th>
+        
+        </tr>
+        </thead>
+      <tbody>
+    <tr class="df"><%= @s %>
+     <td ><%= position_form.text_field :Nazwa,i2: '99999$s'  %><%=$s %></td>
+     <td ><%= position_form.text_field :PKWiU %></td>
+     <td ><div class="<%= @s %>" i<%= @s %>="InvQty2" ><%= position_form.text_field :amount %></div></td>
+     <td ><%= position_form.text_field :unit %></td>
+   <div class="p" class="<%= @s %>" i<%= @s %>="InvQty1" >  <td ><%= position_form.text_field :VAT %></div></td>
+   <td ><%= position_form.select :total, [['23%','23'], ['13%','13']] %></td></tr>
+   </tbody>
+ </table>
+
+<div><input type="text" class="<%= @s %>" placeholder="Inv Qty" i<%= @s %>="InvQty1" value=""/></div>
+<br/>
+    <div class="<%= @s %>" i<%= @s %>="InvQty2" ><input type="text"  placeholder="Inv Qty" i<%= @s %>="InvQty2" value=""/></div>
+<br/>        
+
+<div class="p"><input type="text"  class="<%= @s %>"  placeholder="Inv Qty" i<%= @s %>="InvQty3"  value=""/></div>
+<br/>   
+         
+
+<div><output type="text"class="p" ip="p<%= @s %>" class="<%= @s %>"  id="<%= @s %>"  value="888"/></div>
+        <div><output type="hidden"class="p" ip="p<%= @s %>"  placeholder="suma"  value="7"/></div>
+         <div><input type="hidden"class="p" ip="p<%= @s %>"  placeholder="suma"  value="7"/></div>
+    <script>
+$(document).ready(function(){
+     $('.<%= @s %>').keyup(function(){
+
+       var val2 = 1;
+       $("input[i<%= @s %>^='InvQty']").each(function()
+       {
+           if($(this).val().length != 0)
+           {
+       val2 = val2 * parseInt($(this).val()) 
+           }
+    });
+        
+        $('#<%= @s %>').val(val2);
+    });
+});
+</script>w:mmmmnn: <%= @s=@s+1 %><%= @s %>
+
+ 
+  <%= position_form.link_to_remove "Usuń pozycje" %>
+<% end %>
+
+   
+    
+
+<p><%= f.link_to_add "Dodaj pozycje", :positions %></p>
+<%= @w%>
+
+<div><input type="text"class="p" ip="p<%= @s %>"  placeholder="suma"  value=""/></div>
+         <div class="fields"><output type="text" class="suma"  id="suma" ></output></div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

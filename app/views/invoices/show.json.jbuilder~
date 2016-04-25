@@ -1,0 +1,6 @@
+json.extract! @invoice, :id, :summary, :facture, :date_raised, :date, :payment, :currency, :language, :pricing_model, :created_at, :updated_at
+<% if @invoice.valid? %>
+('#invoice_form').html('<%= escape_javascript( render :partial => "invoices_record" ) %>');
+<% else %>
+alert('Could not save');
+<% end %>
