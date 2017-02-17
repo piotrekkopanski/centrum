@@ -1,0 +1,10 @@
+require 'rails_helper'
+
+
+
+RSpec.feature "invoice", :type => :request do
+  it 'shows index client page ' do
+      
+      expect(response).to have_content   "ll"
+    end
+end

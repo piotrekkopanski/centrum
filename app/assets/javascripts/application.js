@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require effective_form_inputs
 //= require_tree .
 $(function() {
 $( "select" )
@@ -42,4 +43,66 @@ $(document).ready(function(){
         $('#suma').val(val2);
     });
 });
+})
+$(function() {
+  $(function () {
+            $('.VAT, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function (index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.amount, .vat').on('change', function () {
+
+                
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".subtot").each(function () {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
+                    }
+                });
+            });
+        });
+});
+$(function() {
+  $(function () {
+            $('.VAT, .subtot, .grdtot, .total, .subtot, .plus, .pluses').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function (index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.subtot, .total').on('change', function () {
+
+                    var qty = $tblrow.find("[ip=sub]").val();
+                    if( qty.length == 0 ){
+                    var qty =0;
+                     };
+                    var price = $tblrow.find("[ip=total]").val();
+                    var subTotal = parseInt(qty, 10) * parseFloat(price) * 0.01;
+                    if (!isNaN(subTotal)) {
+
+                        
+                        var grandTotal = 0;
+
+                        $(".total").each(function () {
+                            var stval = subTotal;
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.pluses').val(grandTotal.toFixed(2));
+                    }
+        $("[il=bum]").on('keyup change', function(){
+    $('#results').html(( parseFloat($('#El').val()) + parseFloat($('#E_CCNM').val())).toFixed(2));
+});
+                });
+            });
+        });
 })

@@ -1,6 +1,502 @@
-<h1>Editing invoice</h1>
+<%= simple_nested_form_for  @invoice  do |f| %>
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invoice.errors.count, "error") %> prohibited this invoice from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @invoice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Show', @invoice %> |
-<%= link_to 'Back', invoices_path %>
+
+
+
+    <div id="page">
+        <div class="container_16" id="main">
+            <div id="content">
+                
+                <div class="grid_12">
+                    <div class="messages">
+                        
+                           
+                    </div>
+                </div>
+
+ <div class="clear"></div>
+                
+    
+                <div id="main-column" class="grid_12">
+                    
+<div class="mainColumn document form">
+    <div class="header">
+
+        <h2><span>Edycja faktury</span></h2>
+
+    </div>
+    <div class="content">
+        
+   
+
+    <input type="hidden" name="customer_name" id="id_customer_name" />
+    <input type="hidden" name="customer_address" id="id_customer_address" />
+    <input type="hidden" name="customer_tax_id" id="id_customer_tax_id" />
+
+
+            <div class="detailsForm">
+                <table>
+                <tbody>
+            
+                    <tr class="summary">
+                        <th><%= f.label :Podsumowanie %>:</th>
+                        <td class="">
+                          <%= f.text_field :summary ,:size => "40x40"%> 
+                
+                            
+                        </td>
+                    </tr>
+            
+            
+                    <tr class="invoice_id">
+                        <th><%= f.label :Faktura %> #:</th>
+                        <td class="">
+                           <%= f.text_field :facture ,:size => "12x1" %>
+                
+                            
+                        </td>
+                    </tr>
+            
+            
+                    <tr class="date_raised">
+                        <th><%= f.label :Data_wystawienia %>:</th>
+                        <td class="">
+                            <%= f.effective_date_time_picker :date_raised ,:size => "12x1",:class => "dateWidget",:as => :effective_date_picker,:input_js => {:format => 'YYYY-MM-DD'} %>
+                
+                            
+                        </td>
+                    </tr>
+             
+                    <tr class="date">
+                        <th><%= f.label :Data_sprzedazy %>:</th>
+                        <td class="">
+                             <%= f.effective_date_time_picker :date ,:size => "12x1",:as => :effective_date_picker,:input_js => {:format => 'YYYY-MM-DD'} %>
+                
+                            
+                        </td>
+                    </tr>
+            <tr >
+                        <th></th>
+                        <td class="">
+ <%= f.association :client  %>
+                            
+                
+                            
+                        </td>
+                    </tr>
+
+            
+                    <tr class="continuous_month">
+                        <th></th>
+                        <td class="">
+                            <input type="checkbox" name="continuous_month" id="id_continuous_month" /> <label for="id_continuous_month">Sprzedaż o charakterze ciągłym</label>
+                
+                            
+                        </td>
+                    </tr>
+            
+
+
+            
+                    <tr class="payment_due">
+                        <th><%= f.label :Termin_płatosci %> :</th>
+                        <td class="">
+                           <%= f.text_field :payment,:value => "14",:size => "1x1" %> dni
+                
+                            <br /><span>0 oznacza płatność w momencie wystawienia</span>
+                
+                            
+                        </td>
+                    </tr>
+            
+
+ 
+
+            
+                    <tr class="currency">
+                        <th> <%= f.label :Waluta %>:</th>
+                        <td class="">
+          <%= f.select :currency,[['DKK'], ['HUF'], ['PLN',:selected => "selected"] , ['GBP'], ['USD'] , ['EUR'], ['CHF'], ['CZK'], ['NOK'] , ['SEK'], ['CAD']]  %>
+                            
+                
+                            
+                        </td>
+                    </tr>
+
+            
+            
+                    <tr class="language">
+                        <th><%= f.label :wersja_językowa %>:</th>
+                        <td class="">
+  <%= f.select :language,[['polska',:selected => "selected"],['polsko–angielska']]%>
+                            
+                
+                            
+                        </td>
+                    </tr>
+            
+            
+                    <tr class="pricing_model">
+                        <th><%= f.label :Typ_faktury %>:</th>
+                        <td class="">
+ <%= f.select :pricing_model, [['Brutto', 1], ['Netto', 2]] %>
+                            
+                
+                            
+                        </td>
+                    </tr>
+            
+
+                </tbody>
+                </table>
+            </div>
+
+            <div class="detailsForm inlineForm">
+                
+                <input type="hidden" name="items-TOTAL_FORMS" value="2" id="id_items-TOTAL_FORMS" /><input type="hidden" name="items-INITIAL_FORMS" value="0" id="id_items-INITIAL_FORMS" /><input type="hidden" name="items-MAX_NUM_FORMS" value="1000" id="id_items-MAX_NUM_FORMS" />
+ 
+                <table id="data-items" id="tblProducts" data-invoicing-autocomplete-url="/ajax/podpowiedz/">
+                <thead >
+                    <tr>
+                        <th class="first" style="width: 221px;">Nazwa</th>
+                        <th style="width: 89px;">PKWiU</th>
+                        <th class="amount" style="width: 49px;">Ilość</th>
+                        <th style="width: 79px;">J.m.</th>
+                        <th class="unit_price">
+                            
+                                <span class="net_price">Cena netto</span>
+                                <span class="gross_price ui-helper-hidden">Cena brutto</span>
+                            
+                        </th>
+                        <th class="tax_rate">VAT</th>
+                        <th class="subtotal last">Suma</th>
+                    </tr>
+                </thead>
+
+              
+             <%= f.fields_for :positions do |position_form| %>
+ <table id="tblProducts">
+    <tbody> 
+           <tr id="items-0">
+       <td class="description first"> <%= position_form.text_field :Nazwa,:size => "28x20",:height => "20", :class =>"description first", :class=>"ui-autocomplete-input" , :ip=>"iii8" %></td>
+        <td class="product_id"> <%= position_form.text_field :PKWiU,:maxlength=>"50", :id=>"items-0-product_id" ,:type=>"text",:size => "5x1"  %></td>
+        <td class="amount"><%= position_form.text_field :amount,"class"=>"amount","il"=>"bum","ip"=>"ant",:size => "4x1" %></td>
+        <td class="unit"><%= position_form.select :unit,[['godz',:value => "h"], ['usługa',:value => "u"], ['szt.',:selected => "selected",:value => "p"] , ['dni',:value => "d"], ['rabat',:value => "x"] , ['kg',:value => "kg"], ['tony',:value => "t"], ['m',:value => "m"], ['km',:value => "km"] , ['zaliczka',:value => "a"], ['komplet',:value => "s"], ['m²',:value => "m2"], ['m³',:value => "m3"], ['litry',:value => "l"]] %></td>
+        <td class="unit_price"><%= position_form.text_field :VAT,"class"=>"vat","il"=>"bum","ip"=>"price",:size => "7x1" %></td>
+        <td class="tax_rate "><%= position_form.select(:total, ['0%', '3%','4%','5%', '7%','8%','22%', '23%',['n.p.','0'],['zw.','0']], { :ip => 'total',:class => 'total' }, { :class => 'total',"il"=>"bum",:ip => 'total'  }) %></td>
+        <td class="subtotal last DELETE ">
+                            <div class="total"><output type="text"  class="subtot" value="0" ip="sub" name="subtot"/><%= position_form.link_to_remove "",:class => "button2" %></div>
+                            <div class="delete"></div>
+                            
+                        </td>
+        </tr>
+
+
+            
+                    
+            
+                
+                
+         <script type="text/javascript">
+       $(function () {
+            $('.VAT, .subtot, .grdtot').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function (index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.amount, .vat').on('change', function () {
+
+                    var qty = $tblrow.find("[ip=ant]").val();
+                    if( qty.length == 0 ){
+                    var qty =0;
+                     };
+                   if ($tblrow.find("[ip=ant]").val().length > 0){
+                      
+                      };
+                   var das = $tblrow.find("[ip=price]");
+                    if (das.length == 0) {
+                    var qty =0;
+                    alert("Element was removed");
+                     };
+                    $(".vat").on("remove", function () {
+                    alert("Element was removed");
+                     })
+                  
+                    var price = $tblrow.find("[ip=price]").val();
+                    var subTotal = parseInt(qty, 10) * parseFloat(price);
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot').val(subTotal.toFixed(2));
+                        var grandTotal = 0;
+
+                        $(".subtot").each(function () {
+                            var stval = parseFloat($(this).val());
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.grdtot').val(grandTotal.toFixed(2));
+                    }
+                });
+            });
+        });
+    </script>
+<script type="text/javascript">
+       $(function () {
+            $('.VAT, .subtot, .grdtot, .total, .subtot, .plus, .pluses').prop('readonly', true);
+            var $tblrows = $("#tblProducts tbody tr");
+
+            $tblrows.each(function (index) {
+                var $tblrow = $(this);
+
+                $tblrow.find('.subtot, .total').on('change', function () {
+
+                    var qty = $tblrow.find("[ip=sub]").val();
+                    if( qty.length == 0 ){
+                    var qty =0;
+                     };
+                    var price = $tblrow.find("[ip=total]").val();
+                    var subTotal = parseInt(qty, 10) * parseFloat(price) * 0.01;
+                     
+                    if (!isNaN(subTotal)) {
+
+                        $tblrow.find('.subtot');
+                        var grandTotal = 0;
+
+                        $(".total").each(function () {
+                            var stval = parseFloat($(this).val())
+                            grandTotal += isNaN(stval) ? 0 : stval;
+                        });
+
+                        $('.pluses').val(grandTotal.toFixed(2));
+                    }
+        $("[il=bum]").on('keyup change', function(){
+    $('#results').html(( parseFloat($('#El').val()) + parseFloat($('#E_CCNM').val())).toFixed(2));
+});
+                });
+            });
+        });
+    </script>                 
+<% end %> 
+
+</tbody>
+                </table>
+
+   
+    
+
+<p><%= f.link_to_add "", :positions,:class => "button_with_image_save" %></p>
+<div class="summary">
+                    <table id="tblProducts">
+                        <tfoot>
+                            <tr>
+                                <th>Razem brutto:</th>
+                                <td><span class="totalGross"><div id="results"></div></span> </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <th>Razem netto:</th>
+                                <td><span class="totalNet"><output id="E_CCNM" type="text" class="grdtot" value="" name=""/></span> </td>
+                            </tr>
+                            <tr class="last">
+                                <th>VAT:</th>
+                                <td><span class="totalVat">+<output id="El" type="text" class="pluses" value="" name=""/></span></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                 
+
+                </div>
+            </div>
+
+
+            <div class="offerDetails">
+            
+                 <p><strong><label >Uwagi</label></strong> <span>(drukowane na dokumencie)</span>:</p>
+                <%= f.text_field :remark ,:size => "40x40" %>
+                <span>Formatowanie: <strong>*pogrubienie*</strong> <em>_kursywa_</em></span>
+                
+            
+            </div>
+
+            <div class="offerDetails">
+            
+                <div class="subscribe">
+                    <p><strong><label for="id_users_0">Powiadamiani użytkownicy</label></strong> <span>(będą informowani o zmianach e-mailem)</span>:</p>
+                    <div class="grid_5 alpha"><label for="id_users_0"><input checked="checked" type="checkbox" name="users" value="1885" id="id_users_0" /> <img src="https://secure.gravatar.com/avatar/e9667859c9a82ce9ba56fcdd92112a72/?s=20&d=https%3A%2F%2Fstatic.centrumfaktur.pl%2Fimg%2Favatar.png" alt="Piotrek" width="20" height="20" /> Potr Kopański</label></div>
+<div class="clear"></div>
+                
+                </div>
+            
+            </div>
+            <div class="submit-placeholder">
+                <div id="bottom-nav">
+                    <div class="formSubmit">
+        
+                        <button type="submit" class="confirm-button">Zapisz zmiany</button> lub <a><%= link_to 'anuluj', invoices_path %></a>
+        
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+                </div>
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="grid_4">
+                        
+    <div class="dataBox">
+        <div class="wrapper">
+            <p>Sprzedawca:</p>
+            <hr />
+            <p class="customer">
+
+                 <strong>firma</strong><br />
+                
+                
+
+            </p>
+            <p class="edit company"><a data-toggle="collapse" data-target="#company-edit">Popraw dane</a></p>
+        </div>
+    </div>
+
+   
+        <div id="company-edit"  class="collapse out">
+            
+            
+<h3>Edycja firmy</h3>
+
+<p>
+    <label for="id_name">Nazwa firmy</label>:<br />
+    <input id="id_name" type="text" name="name" value="firma" maxlength="250" />
+
+</p>
+
+
+
+<p>
+    <label for="id_address">Adres firmy</label>:<br />
+    <textarea id="id_address" rows="10" cols="20" name="address"></textarea>
+
+</p>
+
+
+
+<div>
+<p>
+    <label for="id_tax_id">NIP</label>:<br />
+    <input id="id_tax_id" type="text" name="tax_id" maxlength="20" />
+
+    <br /><span>Krajowy lub międzynarodowy identyfikator płatnika VAT.</span>
+
+</p>
+
+</div>
+
+<div><input type="submit" value="Zapisz zmiany" /> albo <a class="cancel" href="#">anuluj</a></div>
+
+
+            
+        </div>
+    
+
+    <div class="dataBox">
+        <div class="wrapper">
+            <p>Nabywca:</p>
+            <hr />
+            <p class="customer">
+
+    
+                <strong>jan kowalski</strong><br />
+                bedlno 27
+                
+    
+
+            </p>
+
+            <p class="edit customer"><a data-toggle="collapse" data-target="#customer-edit">Popraw dane</a></p>
+
+        </div>
+    </div>
+
+    
+        <div id="customer-edit"  class="collapse ">
+            
+            
+<h3>Edycja klienta</h3>
+
+<p>
+    <label for="id_name">Imię i nazwisko lub nazwa firmy</label>:<br />
+    <input id="id_name" type="text" name="name" value="jan kowalski" maxlength="250" />
+
+</p>
+
+
+
+<p>
+    <label for="id_address">Adres</label>:<br />
+    <textarea id="id_address" rows="10" cols="20" name="address">bedlno 27</textarea>
+
+</p>
+
+
+
+<div>
+<p>
+    <label for="id_tax_id">NIP</label>:<br />
+    <input id="id_tax_id" type="text" name="tax_id" maxlength="20" />
+
+    <br /><span>Krajowy lub międzynarodowy identyfikator płatnika VAT.</span>
+
+</p>
+
+</div>
+
+<div><input type="submit" value="Zapisz zmiany" /> albo <a class="cancel" href="#">anuluj</a></div>
+
+
+            
+        </div>
+  
+
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+    
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container_16">
+            <div class="grid_16 copyright">
+                <p>Powered by <a href="http://centrumfaktur.pl">CentrumFaktur</a>.</p>
+            </div>
+            <div class="clear"></div>
+    
+    
+        </div>
+    </div>
+
+
+
+                            
+   <% end %> 
+ 
+
+
+

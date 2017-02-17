@@ -1,30 +1,222 @@
 <p id="notice"><%= notice %></p>
 
+<div id="page">
+        <div class="container_16" id="main">
+            <div id="content">
+                
+    
+                <div id="main-column" class="grid_12">
+                    
+<div class="mainColumn">
+    <div class="header">
+        <h2>Szczegóły klienta</h2>
+    </div>
+    <div class="clear"></div>
+    <div class="content">
+        <table class="customerDetails">
+            <tbody>
+            <tr>
+            <td class="customerData">
+                <p>
+                    <strong><%= @client.name %></strong><br />
+                   <%= @client.address %>
+                    
+                    
+                    <br /><br />
+                    <strong>Adres korespondencyjny:</strong><br />
+                   <%= @client.mailing_address %>
+                    
+                    <br /><br />
+                    <strong>Uwagi:</strong><br />
+                    <%= @client.notes %>
+                </p>
+            </td>
+            <td class="contacts">
+            
+                <div class="clear"></div>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-<div class="detailsForm customerForm">
-                <table>
-           <tr>
-        <th><label >NIP</label>:</th>
-        <td ><%= @client.NIP %></td>
-          </tr>
-        <tr>
-        <th><label >Imie i nazwisko lub nazwa firmy:</label>:</th>
-        <td ><%= @client.name %></td>
-          </tr>
-       <th><label>Adres</label>:</th>
-        <td ><%= @client.address %></td>
-          </tr>
-        <tr>
-        <th><label >Mailing address:</label>:</th>
-        <td ><%= @client.mailing_address %></td>
-          </tr>
-        <th><label>Termin</label>:</th>
-        <td ><%= @client.term %></td>
-          </tr>
-        <tr>
-        <th><label >Uwagi:</label>:</th>
-        <td ><%= @client.notes %></td>
-          </tr>
+    <hr />
+
+    
+    <div class="header warn">
+        <h2>Niezapłacone faktury</h2>
+    </div>
+    <div class="clear"></div>
+    
+
+
+<table class="listTable">
+<tbody>
+
+    <tr class="warn">
+        <td class="invoiceId first">1/4/2016</td>
+        <td class="summary">
+            <a href="/faktury/143770/">
+                <div class="main">
+            
+                
+                    <span class="vCard" data-href="/klienci/23682/">jan kowalski</span>
+                
+            
+                </div>
+                <div class="offer">
+    
+                    podsumowanie22
+    
+                </div>
+            </a>
+        </td>
+        <td class="date">
+            08.04.2016
+            
+                
+                <div class="remaining warn">
+                
+                termin płatnści: 22.04.2016
+                </div>
+            
+        </td>
+        <td class="amount">
+            1 711,80 zł
+        
+            
+            <div class="remaining warn">zalega: <span class="gross">1 711,80 zł</span></div>
+            
+        
+        </td>
+        <td class="edit last"><a href="/faktury/143770/edycja/"><img alt="Edytuj fakturę" title="Edytuj fakturę" src="//static.centrumfaktur.pl/img/list-edit-icon.png"</a></td>
+    </tr>
+
+</tbody>
 </table>
-<%= link_to 'Edit', edit_client_path(@client) %> |
+
+    
+
+    
+    <div class="header">
+        <h2>Szkice faktur</h2>
+    </div>
+    <div class="clear"></div>
+    
+
+
+<table class="listTable">
+<tbody>
+
+    <tr class="">
+        <td class="invoiceId first">1/ZAL/4/2016</td>
+        <td class="summary">
+            <a href="/faktury/143772/">
+                <div class="main">
+            
+                
+                    <span class="vCard" data-href="/klienci/23682/">jan kowalski</span>
+                
+            
+                </div>
+                <div class="offer">
+    
+        
+                    Piwo
+        
+    
+                </div>
+            </a>
+        </td>
+        <td class="date">
+            08.04.2016
+            
+        </td>
+        <td class="amount">
+            12,00 zł
+        
+        </td>
+        <td class="edit last"><a href="/faktury/143772/edycja/"><img alt="Edytuj fakturę" title="Edytuj fakturę" src="//static.centrumfaktur.pl/img/list-edit-icon.png"</a></td>
+    </tr>
+
+</tbody>
+</table>
+
+    
+
+    
+</div>
+
+                </div>
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="grid_4">
+                        
+    <ul class="summary">
+        <li class="invoices">
+
+            Wystawiono 1 faktur(y)
+            <br />Spłacono:
+    
+            <br/> <strong>0,00 / 1 711,80 PLN</strong>
+    
+
+        </li>
+        <li class="estimates">
+
+            Nie trwają żadne negocjacje
+
+        </li>
+    </ul>
+
+    <hr />
+
+    <ul class="actions">
+        <li class="edit"><a><span></span><%= link_to 'Edytuj', edit_client_path(@client) %></a>
+            
+        </li>
+        <li class="new-estimate">
+            <a href="/oferty/nowa/23682/" title="Nowa oferta"><span></span>Nowa oferta</a>
+        </li>
+        <li class="new-invoice">
+            <a><span></span><%= link_to 'Nowa faktura', new_invoice_path %></a>
+        </li>
+        <li class="new-invoice">
+            <a href="/faktury/nowa/23682/advance/" title="Nowa faktura"><span></span>Nowa faktura zaliczkowa</a>
+        </li>
+    </ul>
+
+    <hr />
+
+    <ul class="actions">
+        <li class="new-contact">
+            <a href="/klienci/23682/kontakty/dodaj/"><span></span>Nowy kontakt</a>
+        </li>
+    </ul>
+
+    <hr />
+
+    <%=  link_to("Usun klienta", "#{@client.id}",class:'small', method: :delete)%>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+    
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container_16">
+            <div class="grid_16 copyright">
+                <p>Powered by <a href="http://centrumfaktur.pl">CentrumFaktur</a>.</p>
+            </div>
+            <div class="clear"></div>
+    
+    
+        </div>
+    </div>
+
+
+<%= link_to 'Edit', edit_client_path(@client) %> 
+
 <%= link_to 'Back', clients_path %>
+

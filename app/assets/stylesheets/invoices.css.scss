@@ -1,3 +1,218 @@
 // Place all the styles related to the invoices controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.inlineForm table td {
+    vertical-align: middle;
+    padding: 5px 5px;
+}
+.button_with_image_save {
+    background: url(//static.centrumfaktur.pl/img/button-add-another.png) no-repeat 10px 6px;
+    text-indent:120px;
+    display:block;
+    height: 100px;
+    cursor: pointer;
+}
+.button2 {
+    background: url(//static.centrumfaktur.pl/img/icon-delete.png);
+    text-indent:53px;
+    background-repeat: no-repeat;
+    padding:10px;
+    background-position: center;
+    
+    
+}
+ .sidebar .sidebarFormStyleSubstitute .sidebarForm.tabbed {
+    background: #f2f5fb;
+    margin: 0;
+    padding: 8px;
+    width: 218px;
+    height: 263px;
+    position: static;
+    
+    z-index: 0;
+}
+.container {
+    width: initial;
+    height: initial;
+}
+#image2 {
+    
+      width: 198px;
+     color: #393939;
+    font-size: 19px;
+    
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: bold;
+   
+    line-height: 34px;
+    margin: 0 -23px 5px;
+   
+    padding: 0 19px;
+    
+   
+    text-align: left;
+    text-decoration: none;
+    
+
+}
+button {
+width: 198px;
+}
+.inlineForm table thead th {
+    background: #f6f6f6 url(../img/table-header-bg.png) 50% 100% repeat-x;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 24px;
+     line-width: 24px;
+        padding: 1px 5px 0;
+}
+.inlineForm table thead th.amount {
+    text-align: left;
+}
+.inlineForm table thead th.unit_price {
+    text-align: left;
+    width: 150px;
+}
+.collapse  {
+    border: 1px solid #fff;
+    background: #f2f5fb;
+    padding: 8px;
+}
+   #id_address 
+{
+    height: 8em;
+    width: 200px;
+    box-sizing: inherit;
+}
+#id_name 
+{
+    width: 196px;
+    box-sizing: content-box;
+}
+.sidebar .sidebarFormStyleSubstitute .sidebarForm .tab .header h3 {
+    padding: 0;
+    color: #5e88b8;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 30px;
+    text-shadow: 0 1px 0 #fff;
+}
+ .sidebarFormtabbed  {
+    background: #f2f5fb;
+    margin: 0;
+    padding: 8px;
+    width: 216px;
+    height: 206px;
+    position: absolute;
+    top: 28px;
+    z-index: 0;
+}
+.sidebar .sidebarFormStyleSubstitute .sidebarForm.tabbed {
+    background: #f2f5fb;
+    margin: 0;
+    padding: 8px;
+    width: 216x;
+    height: 206px;
+    position: static;
+    z-index: 0;
+}
+
+.sidebar .sidebarFormStyleSubstitute .sidebarForm.tabbed {
+    position: relative;
+    padding: 0;
+    height: 235px;
+}
+.sidebar .sidebarFormStyleSubstitute .sidebarForm .tab .header h3 {
+    padding: 0;
+    color: #5e88b8;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 30px;
+    text-shadow: 0 1px 0 #fff;
+}
+.sidebar h3 {
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 16px;
+    margin: 0px 0 10px;
+    padding: 0;
+    text-shadow: 0 1px 0 #fff;
+}
+.container {
+    width: initial;
+    height: initial;
+    margin-left: -15px;
+}
+.sidebar .sidebarFormStyleSubstitute .sidebarForm.tabbed {
+    position: relative;
+    padding: 0;
+    height: 235px;
+    margin-bottom: 20px;
+}
+.sidebar .sidebarFormStyleSubstitute {
+    border: 1px solid #c0d1ec;
+    position: relative;
+    margin-bottom: -9px;
+    margin-left: -9px;
+    margin-right: -24px;
+    margin-top: -9px;
+}
+.inlineForm table td.unit_price {
+    text-align: left;
+    width: 60px;
+}
+#invoice_remark {
+        font-size: 27px;
+    width: 662x;
+    height: 206px;
+}
+
+body.invoicesTab #menu-invoices a {
+    background: url(../img/menu-active-bg.png) 50% 100% no-repeat;
+    color: #000000;
+    padding-bottom: 7px;
+    text-shadow: 0 1px 0 #ffffff;
+}
+body.invoicesTab #menu-invoices {
+    background: #cfd6dd;
+    border-left: 1px solid #c5cfdb;
+    border-right: 1px solid #c6d1dd;
+    margin-top: 0;
+    overflow: visible;
+}
+textarea {
+    vertical-align: top;
+    font-size: 14px;
+    font-family: inherit;
+    resize: vertical;
+}
+.small delete {
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efeee9), color-stop(1, #ffffff));
+    text-indent:30px;
+    display:block;
+    cursor: pointer;
+}
+.test {
+     color: #9E2A2A;
+}
+.white {
+    color: rgba(68, 21, 26, 0);
+}
+.small {
+font-size: 18px;
+    height: 26px;
+    line-height: 26px;
+    width: auto;
+    background: #efeee9 url(//static.centrumfaktur.pl/img/button-icon-delete.png);
+    background-repeat: no-repeat;
+    background-position: left ;
+    padding-left: 22px;
+    border: 1px solid #bbbbbb;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 5px;
+    
+     
+}

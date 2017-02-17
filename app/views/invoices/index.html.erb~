@@ -1,0 +1,228 @@
+
+
+    <div id="page">
+        <div class="container_16" id="main">
+            <div id="content">
+                
+    
+                <div id="main-column" class="grid_12">
+                    
+<div class="mainColumn">
+    
+        <p class="header-link">
+            <a href="/faktury/archiwum-niezaplacone/2016/4/">Archiwum</a>
+        </p>
+
+        <div class="header warn">
+            <h2>Niezapłacone</h2>
+        </div>
+        <div class="clear"></div>
+        
+
+
+<table class="listTable">
+<tbody>
+
+    <tr class="warn">
+        <td class="invoiceId first">1/4/2016</td>
+        <td class="summary">
+            <a href="/faktury/143770/">
+                <div class="main">
+            
+                
+                    <span class="vCard" data-href="/klienci/23682/">jan kowalski</span>
+                
+            
+                </div>
+                <div class="offer">
+    
+                    podsumowanie22
+    
+                </div>
+            </a>
+        </td>
+        <td class="date">
+            08.04.2016
+            
+                
+                <div class="remaining warn">
+                
+                termin płatnści: 22.04.2016
+                </div>
+            
+        </td>
+        <td class="amount">
+            1 711,80 zł
+        
+            
+            <div class="remaining warn">zalega: <span class="gross">1 711,80 zł</span></div>
+            
+        
+        </td>
+        <td class="edit last"><a href="/faktury/143770/edycja/"><img alt="Edytuj fakturę" title="Edytuj fakturę" src="//static.centrumfaktur.pl/img/list-edit-icon.png"</a></td>
+    </tr>
+
+</tbody>
+</table>
+
+    
+    
+        <p class="header-link">
+            <a href="/faktury/archiwum-szkice/2016/7/">Archiwum</a>
+        </p>
+
+        <div class="header">
+            <h2>Szkice</h2>
+        </div>
+        <div class="clear"></div>
+        
+
+
+<table class="listTable">
+<tbody>
+-<% @invoices.each_with_index do |invoice,index| %>
+    <tr class="">
+        <td class="invoiceId first"><%=  invoice.date %></td>
+        <td class="summary">
+           
+                <div class="main">
+            
+                
+                    <span class="vCard" data-href="/klienci/23682/"><%=  invoice.date %></span>
+                
+            
+                </div>
+                <div class="offer">
+    <%= link_to invoice do %>
+  <%= invoice.facture %> <%= link_to "Usuń","/invoices/#{invoice.id}",class:'btn btn-warning btn-xs', method: :delete, data:{confirm:'Are you sure?'} %>
+<% end %>
+                    
+    
+                </div>
+           
+        </td>
+        <td class="date">
+           <%=  invoice.date_raised %>
+            
+        </td>
+        <td class="amount">
+            0,00 zł
+        
+        </td>
+        <td class="edit last"><a href="/invoices/<%= index+1 %>/edit/"><img alt="Edytuj fakturę" title="Edytuj fakturę" src="//static.centrumfaktur.pl/img/list-edit-icon.png"</a></td>
+    </tr>
+<%end%>
+    
+</tbody>
+</table>
+
+    
+    
+
+    
+</div>
+
+                </div>
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="grid_4">
+                        
+<div class="container">
+  
+  <a class="button" type="button" data-toggle="collapse" data-target="#demo"><img src="//static.centrumfaktur.pl/img/button-icon-add-invoice.png" alt="">Nowa faktura</a>
+  <div id="demo" class="collapse out">
+    
+ 
+    
+    <div class="sidebarFormStyleSubstitute withOpener" data-icon="add-invoice">
+        <div class="sidebarForm tabbed">
+            <div id="tab1" class="tab disabled_js active">
+                <div class="header">
+                    <h3>Nowa faktura</h3>
+                </div>
+                <div class="tab_content">
+                    <form method="post" action="?action=invoice" id="add-invoice">
+                        <p class="invoice-type">
+                            <label for="id_invoice_type_0">Wybierz rodzaj faktury</label>:<br />
+                            
+                            <label for="id_invoice_type_0"><input checked="checked" type="radio" id="id_invoice_type_0" value="regular" name="invoice_type" /> Faktura</label><br />
+<label for="id_invoice_type_1"><input type="radio" id="id_invoice_type_1" value="advance" name="invoice_type" /> Faktura zaliczkowa</label>
+                        </p>
+                        
+                        <p>
+                            <label for="id_invoice_template">Wybierz szablon</label>:<br />
+                            
+                            <select name="invoice_template" id="id_invoice_template">
+<option value="" selected="selected">Pusta faktura…</option>
+<option value="143771">podsumowanie22</option>
+</select>
+                        </p>
+                        
+                        <p>
+                            <label for="id_customer">Wybierz klienta</label>:<br />
+
+
+                            <%= form_for  @invoice  do |f| %>
+<%= f.collection_select :designation ,Client.all, :name, :name, {id: "id_customer"}  %>
+
+     
+                       
+                        </p>
+                        <a href="/invoices/new"><input type="submit" name="create-invoice" value="Stwórz fakturę" /></a>
+                    </form>
+                </div>
+            </div>
+<%end%>
+            <div id="tab2" class="tab disabled_js">
+                <div class="header">
+                    <h3>Faktura z Allegro</h3>
+                </div>
+                <div class="tab_content">
+                    <form method="post" action="/allegro/sprzedane/" id="search-allegro-invoice">
+                        <p>
+                            <tr><th><label for="id_terms">Szukaj:</label></th><td><input type="text" name="terms" id="id_terms" /><br /><span class="helptext">Numer lub tytuł aukcji, login kupującego</span></td></tr>
+                        </p>
+                        <input type="submit" name="search-allegro-invoice" value="Wyszukaj" />
+                    </form>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+
+ </div>
+</div>
+
+
+
+        <hr />
+
+        <p><a href="/faktury/szablony/">Szablony faktur</a></p>
+
+
+
+        <hr />
+
+        <p><a href="webcal://domena.centrumfaktur.pl/faktury/kalendarz/93wask6oh45ifcgm0u8pv7bn1dyjlqtx/">iCalendar</a>: terminy spłat (<a href="http://www.google.com/calendar/render?cid=http://domena.centrumfaktur.pl/faktury/kalendarz/93wask6oh45ifcgm0u8pv7bn1dyjlqtx/" target="_blank">dodaj do kalendarza Google</a>)</p>
+
+        <p><a href="/faktury/numeracja/">Raport o stanie numeracji</a></p>
+
+                    </div>
+                </div>
+                <div class="clear"></div>
+    
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container_16">
+            <div class="grid_16 copyright">
+                <p>Powered by <a href="http://centrumfaktur.pl">CentrumFaktur</a>.</p>
+            </div>
+            <div class="clear"></div>
+    
+    
+        </div>
+    </div>
+
+

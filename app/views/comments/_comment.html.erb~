@@ -1,0 +1,55 @@
+
+
+
+
+
+
+
+<div class="comment user  first ">
+    
+    <div class="alpha grid_2 avatar">
+        <span class="avatarWrapper"><img src="https://secure.gravatar.com/avatar/e9667859c9a82ce9ba56fcdd92112a72/?s=60&d=https%3A%2F%2Fstatic.centrumfaktur.pl%2Fimg%2Favatar.png" alt="Piotrek" width="60" height="60" /></span>
+    </div>
+        
+    <div class="message grid_10 omega">
+        
+        <cite>
+            
+            <span class="details"><a href="/faktury/150279/" title="Faktura: 1/7/2016"><span>Faktura: 1/7/2016</span></a></span>
+            
+            
+            
+            <img src="//static.centrumfaktur.pl/img/icon-padlock.png" alt="Niewidoczne dla klienta" title="Niewidoczne dla klienta" />
+            
+            
+                
+            <strong><%= comment.name %></strong>,
+                
+            
+              <%= time_ago_in_words(comment.created_at) %>
+        </cite>
+            
+        <blockquote>
+            
+            <span class="thingy"></span>
+            
+            	<p><%= comment.body %></p>
+        </blockquote>
+        <p> <%= link_to 'Delete', [comment.invoice,comment], method: :delete  %></p>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+    
+
+
+
+
+
+    
+
+
+
+
+

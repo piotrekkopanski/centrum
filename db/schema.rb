@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410154128) do
+ActiveRecord::Schema.define(version: 20161214134448) do
 
   create_table "clients", force: true do |t|
     t.integer  "NIP"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20160410154128) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", force: true do |t|
+    t.string   "name"
+    t.text     "body"
+    t.integer  "invoice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["invoice_id"], name: "index_comments_on_invoice_id"
+
   create_table "invoices", force: true do |t|
     t.text     "summary"
     t.text     "facture"
@@ -35,6 +45,11 @@ ActiveRecord::Schema.define(version: 20160410154128) do
     t.string   "pricing_model"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "name"
+    t.text     "designation"
+    t.text     "remarks"
+    t.text     "remark"
+    t.integer  "client_id"
   end
 
   create_table "positions", force: true do |t|

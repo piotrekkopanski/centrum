@@ -5,14 +5,20 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices = Invoice.all
- 
+    @invoice = Invoice.new
   end
 
   # GET /invoices/1
   # GET /invoices/1.json
   def show
+@t=0
+@s=0
+ 
+     @invoices = Invoice.find([@invoice.id])
+ 
  
   end
+ 
 
   # GET /invoices/new
   def new
@@ -75,6 +81,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:summary, :facture, :date_raised, :date, :payment, :currency, :language, :pricing_model, positions_attributes: [:id, :Nazwa,:PKWiU,:amount,:unit,:price_unit,:VAT,:total, :_destroy])
+      params.require(:invoice).permit(:summary, :designation, :facture, :date_raised, :date, :payment, :currency, :language, :pricing_model, :remark,:client_id, positions_attributes: [:id, :Nazwa,:PKWiU,:amount,:unit,:price_unit,:VAT,:total, :_destroy])
     end
 end

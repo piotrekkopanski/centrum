@@ -1,0 +1,5 @@
+module ApplicationHelper
+ def active_class(invoices/)
+  current_page?(/invoices/) ? "active" : ""
+ end
+end

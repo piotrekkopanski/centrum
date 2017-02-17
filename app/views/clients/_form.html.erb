@@ -10,32 +10,104 @@
       </ul>
     </div>
   <% end %>
+<div class="container_16">
+            
+    
+    <div class="clear"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="page">
+        <div class="container_16" id="main">
+            <div id="content">
+                
+    
+                <div id="main-column" class="grid_12">
+                    
+<div class="mainColumn form">
+    <div class="header">
+
+        <h2>Nowy klient</h2>
+
+    </div>
+    <div class="clear"></div>
+    <div class="content">
+        <form method="post" action="" id="customerAdd">
+            <div class="detailsForm customerForm">
  <div class="detailsForm customerForm">
                 <table >
-         <tr><th><label >NIP</label>:</th>
-        <td ><%= f.number_field :NIP %></td>
+         <tr><th> <%= f.label :NIP ,"NIP :" %></th>
+        <td ><%= f.text_field :NIP,"maxlength"=>"20","id"=>"id_tax_id" %><br /><span>Krajowy lub międzynarodowy identyfikator płatnika VAT.</span></td>
         </tr>
-         <tr><th><span class="required">*</span><label>Imię i nazwisko lub nazwa firmy</label>::</th>
+        <tr class="gus_button">
+        <th><label for="id_gus_button">GUS</label>:</th>
+        <td class="">
+           <input type="submit" name="gus" value="Pobierz dane z GUS" /> 
+            </td>
+         </tr>
+         <tr>
+<th><span class="required">*</span>
+          <%= f.label :model ,"Imię i nazwisko lub nazwa firmy :" %>
+         </th>
         <td ><%= f.text_field :name %></td>
         </tr>
-        <tr><th><span class="required">*</span><label >Adres</label>:</th>
+        <tr><th><span class="required">*</span><%= f.label :address ,"Adres :" %></th>
         <td ><%= f.text_area :address %></td>
         </tr>
-         <tr><th><label>Adres korespondencyjny:</label>::</th>
+         <tr><th><%= f.label :mailing_address ,"Adres korespondencyjny :" %></th>
         <td ><%= f.text_area :mailing_address %></td>
         </tr>
-        <tr><th><span class="required">*</span><label >Termin</label>:</th>
-        <td ><%= f.number_field :term %></td>
+        <tr><th><span class="required">*</span><%= f.label :term ,"Termin :" %></th>
+        <td ><%= f.text_field :term,"value"=>"14" %>dni
+           <br /><span>0 oznacza płatność w momencie wystawienia</span></td>
         </tr>
-         <tr><th><label>Uwagi</label>::</th>
+         <tr><th><%= f.label :notes ,"Uwagi :" %></th>
         <td ><%= f.text_area :notes %></td>
         </tr>
 </table>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+   </div>
 
+            <div class="formSubmit">
+
+                <div class="actions">
+         
+            <%= f.submit   "class"=>"confirm-button","value"=>"Utwórz klienta" %> lub <a href="/clients/">anuluj</a></div>
+                
+
+               
+            </div>
+            
+            
+            
+        </form>
+    </div>
+</div>
+
+                </div>
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="grid_4">
+                        
+                    </div>
+                </div>
+                <div class="clear"></div>
+    
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container_16">
+            <div class="grid_16 copyright">
+                <p>Powered by <a href="http://centrumfaktur.pl">CentrumFaktur</a>.</p>
+            </div>
+            <div class="clear"></div>
+    
+    
+        </div>
+  
 
    
 <% end %>

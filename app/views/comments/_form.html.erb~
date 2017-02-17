@@ -1,0 +1,18 @@
+
+<%= form_for([@invoice,@invoice.comments.build]) do |f| %>
+
+<div class="commentForm">
+        <div class="grid_2 alpha avatar"><span class="avatarWrapper"><img src="https://secure.gravatar.com/avatar/e9667859c9a82ce9ba56fcdd92112a72/?s=60&d=https%3A%2F%2Fstatic.centrumfaktur.pl%2Fimg%2Favatar.png" alt="Piotrek" width="60" height="60" /></span></div>
+        <div class="message grid_10 omega">
+            <form method="post" action="">
+                
+               <%= f.text_area :body  %> 
+                <div class="hint">Formatowanie: <strong>*pogrubienie*</strong> <em>_kursywa_</em></div>
+                <%= f.submit ,	
+{"action"=>"show", "controller"=>"invoices", "id"=>"345"}%>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+<%end%>
+

@@ -7,8 +7,6 @@
   NestedFormEvents.prototype = {
     addFields: function(e) {
       // Setup
-      var f=0
-      var f=f+1
       var link      = e.currentTarget;
       var assoc     = $(link).data('association');                // Name of child
       var blueprint = $('#' + $(link).data('blueprint-id'));
@@ -114,3 +112,17 @@
                 return $();//nothing found
         };
 })(jQuery);
+<script>
+function doCalc() {
+    var total = 0;
+    $('tr').each(function() {
+        $(this).find('span.amount').html($('input:eq(0)', this).val() * $('input:eq(1)', this).val());
+    });
+    $('.amount').each(function() {
+        total += parseInt($(this).text(),10);
+    });
+    $('div.total_amount').html(total);
+}
+$('button').click(doCalc);
+
+ </script>

@@ -1,85 +1,314 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Podsumowanie:</strong>
-  <%= @invoice.summary %>
-</p>
+<%= simple_nested_form_for @invoice do |f| %> 
+    <div id="page">
+        <div class="container_16" id="main">
+            <div id="content">
+                
+    
+                <div id="main-column" class="grid_12">
+                    
+<div class="mainColumn document">
+    <div class="header">
 
-<p>
-  <strong>Facture:</strong>
-  <%= @invoice.facture %>
-</p>
+        <h2>Faktura: <span><%= @invoice.summary %> </span></h2>
 
-<p>
-  <strong>Date raised:</strong>
-  <%= @invoice.date_raised %>
-</p>
-<%= nested_form_for @invoice do |f| %>
-<p>
-  <strong>Date:</strong>
-  <%= @invoice.date %>
-</p>
+    </div>
+    <div class="clear"></div>
+    <div class="content">
+        <form method="post" action="" class="submitOnce">
+            <div class="detailsForm">
+                <p class="customer">
+                
+                    <strong>
+                        <%= link_to @invoice.client.name, client_path(@invoice.client) %>
+                           
+                        
+                    </strong><br />
+                    
+    Kontakt: kontakt nazwa<br />
+    E-mail: <a href="mailto:piotrekkopanski@interia.pl">piotrekkopanski@interia.pl</a>
 
-<p>
-  <strong>Payment:</strong>
-  <%= @invoice.payment %>
-</p>
 
-<p>
-  <strong>Currency:</strong>
-  <%= @invoice.currency %>
-</p>
+                
+                </p>
+                <p class="invoiceNo">
+                    Numer faktury:
+                    <strong><%= @invoice.facture %></strong>
+                </p>
+                
+                <div class="dates">
+                    <p>Data wystawienia: <%= @invoice.date_raised %></p>
 
-<p>
-  <strong>Language:</strong>
-  <%= @invoice.language %>
-</p>
+                    <p>Data sprzedaży: <%= @invoice.date %></p>
+                    <p>Termin płatności:  <%= @invoice.payment %></p>
 
-<p>
-  <strong>Pricing model:</strong>
-  <%= @invoice.pricing_model %>
-</p>
-<%= f.fields_for :positions do |position_form| %>
-Nazwa:
-<%= position_form.object.Nazwa %>
-PKWiU
- <%= position_form.object.PKWiU %>
-Ilość:
-<%= position_form.object.amount %>
-J.m
-<%= position_form.object.unit %>
-Cena netto
-<%= position_form.object.price_unit %>
-Vat:
-<%= position_form.object.VAT %>
-suma:
-<%= '%.2f' % position_form.object.total %>
-sumaaaa<p>
- <%= @suma=position_form.object.amount*position_form.object.price_unit*position_form.object.VAT*0.01 %> </p>
-suma3
-<%= position_form.object.amount*position_form.object.VAT %>
-<%='%.2f' % 1.23456%><br><%= '%.2f' % @suma %>
-<br>
+                </div>
+                
+                
+                
+                
+                
+                   
+                <div class="clear"></div>
+            </div>
+
+            
+            
+            <div class="detailsForm inlineForm detailsOnly">
+                <table>
+                <thead>
+                    <tr>
+                        <th class="first">Nazwa</th>
+                        <th>PKWiU</th>
+                        <th class="amount">Ilość</th>
+                        <th>J.m.</th>
+                        <th class="unit_price">
+                            
+                                Cena netto
+                            
+                        </th>
+                        <th class="tax_rate">VAT</th>
+                        <th class="subtotal last">Suma</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                <%= f.fields_for :positions do |position_form| %><%  @t=@t+position_form.object.VAT*position_form.object.amount %>
+  
+<%  @s=@s+position_form.object.total*position_form.object.VAT*position_form.object.amount*0.01 %>
+
+    <% end %>
+      <%= f.fields_for :positions do |position_form| %>
+<tr>
+    <td class="description first">
+       <%= position_form.object.Nazwa %>
+    </td>
+    <td class="product_id">
+        <%= position_form.object.PKWiU %>
+    </td>
+    <td class="amount">
+       <%= position_form.object.amount %>
+    </td>
+    <td class="unit">
+       <%= position_form.object.unit %>
+    </td>
+    <td class="unit_price">
+      <%= position_form.object.VAT %>
+      
+    </td>
+    <td class="tax_rate">
+       <%= position_form.object.total %>
+    </td>
+    <td class="subtotal last">
+       <%=  position_form.object.amount*position_form.object.VAT %> <br />
+    </td>
+   
+  
+</tr>
+
+
+
+                
+                
+
+
+<% end %>
+          
+
+                
+            
+                </tbody>
+
+                </table>
+                <div class="summary">
+                    <table>
+                        
+                        <tfoot>
+                            <tr>
+                                <th>Razem brutto:</th>
+                                
+                                <td><%= @t+@s %></td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <th>Razem netto:</th>
+                                
+                                <td><%= @t %></td>
+                            </tr>
+                            <tr class="last">
+                                <th>VAT:</th>
+                                
+                                <td><%= @s %></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+          <%= @invoice.remark %>
+
+
+    
+            <div class="offerDetails">
+                
+            </div>
+    
+   
+
+        </form>
+    </div>
+</div>
+<div class="comments">
+ <h3>Historia faktury</h3>
+     
+
+
+
+    
+
+
+
+
+
+<%= render @invoice.comments %>
+
+ <%= render 'comments/form' %>
+
+ 
+
+    
+
+
+
+
+<div class="comment created  first ">
+    
+    <div class="alpha grid_2 type">
+        <span class="tag created">Utworzona</span>
+    </div>
+        
+    <div class="message grid_10 omega">
+        
+        <div class="summary">
+            
+                
+                    <span class="details"><a href="/faktury/150279/" title="Faktura: 1/7/2016"><span> Faktura: 1/7/2016</span></a></span>
+                
+            
+            
+            <span class="avatar"><img src="https://secure.gravatar.com/avatar/e9667859c9a82ce9ba56fcdd92112a72/?s=16&d=https%3A%2F%2Fstatic.centrumfaktur.pl%2Fimg%2Favatar.png" alt="Piotrek" width="16" height="16" /></span>
+            
+            
+            <strong>Potr Kopański</strong> utworzył fakturę. &mdash; 27.07.2016
+        </div>
+        
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+</div>
+
+                </div>
+                <div class="sidebar">
+                    <div id="sidebar-nav" class="grid_4">
+                        
+ 
+
+    <div class="payments">
+        <p>Spłacono: <strong>0,00</strong> / <strong>0,00</strong> PLN</p>
+        <div class="progress">
+            <div class="internal" style="width: 100%;"></div>
+        </div>
+        
+        
+        <p class="due">Spłacono w całości.</p>
+            
+        <p><a href="/faktury/150279/podziekowanie/" class="button long"><img src="//static.centrumfaktur.pl/img/button-icon-thanks.png" alt="" />Wyślij podziękowanie</a></p>
+            
+        
+        
+    </div>
+    <hr />
+
+
+    <div class="main-buttons">
+        <div>
+    
+            <a ><button><img src="//static.centrumfaktur.pl/img/button-icon-pdf.png" alt=""> <%= link_to "Wydrukuj",invoice_path(@invoice, :format => :pdf) ,:id => "image2"%></button></a><p>
+            
+    
+        </div>
+        <div>
+    
+            <a class="button" href="/faktury/150279/wyslij/invoice/"><img src="//static.centrumfaktur.pl/img/email-icon.png" alt=""/>Wyślij e-mailem</a>
+            
+
+        
+    
+        </div>
+    </div>
+    <ul class="actions">
+        <li class="edit"><a><span></span><%= link_to 'Edytuj', edit_invoice_path(@invoice) %></a></li>
+        <li class="pdf"><a href="/faktury/150279/pdf/draft/"><span></span>Wydrukuj szkic</a></li>
+
+        <li class="edit"><a href="/faktury/150279/szablon/"><span></span>Utwórz szablon faktury</a></li>
+
+
+        <li class="edit"><a href="/faktury/nowa/korekta/150279/"><span></span>Wystaw korektę</a></li>
+
+    </ul>
+
+    <hr />
+
+    <h3>Duplikat</h3>
+    <ul class="actions">
+        <li class="pdf"><a href="/faktury/150279/pdf/duplicate/"><span></span>Wydrukuj</a>
+            
+        </li>
+        <li class="email"><a href="/faktury/150279/wyslij/duplicate/"><span></span>Wyślij e-mailem</a>
+            
+        </li>
+    
+    </ul>
+
+    <hr />
+
+
+
+    <h3>Powiadamiane <span>osoby:</span></h3>
+    <ul class="subscribers">
+    
+        <li><img src="https://secure.gravatar.com/avatar/e9667859c9a82ce9ba56fcdd92112a72/?s=20&d=https%3A%2F%2Fstatic.centrumfaktur.pl%2Fimg%2Favatar.png" alt="Piotrek" width="20" height="20" />Potr Kopański</li>
+    
+    </ul>
+
+    <hr />
+
+
+    
+<%=  link_to("Usun", "#{@invoice.id}",class:'small', method: :delete)%>
+
+                   
+                <div class="clear"></div>
+    
+            
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container_16">
+            <div class="grid_16 copyright">
+                <p>Powered by <a href="http://centrumfaktur.pl">CentrumFaktur</a>.</p>
+            </div>
+            <div class="clear"></div>
+    
+    
+        </div>
+    </div>
+    
+</body> 
 <% end %>
 
-<% end %>
-<% @total %>
- <%= @invoice.summary %>
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> 
-<%= link_to 'Back', invoices_path %><% if @invoice.pricing_model='Brutto' %>
-gg
-<% elsif @invoice.pricing_model=2 %>
-ll
-<% end %>
-<p>This example calls a function which performs a calculation, and returns the result:</p>
 
-<p id="demo"></p>
 
-<script>
-var c= @invoice.payment
-function myFunction(a, b) {
-    return a * b * c;
-}
-document.getElementById("demo").innerHTML = myFunction(4, 3);
-</script>
 
