@@ -5,7 +5,8 @@ ruby '2.1.5'
 gem 'rails', '4.1.10'
 # Use sqlite3 as the database for Active Record
 
-group :production do
+gem 'rails_12factor'
+ group :production do
   gem 'pg'
 end
 # Use SCSS for stylesheets
