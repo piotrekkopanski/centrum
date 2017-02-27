@@ -45,7 +45,7 @@ $(document).ready(function(){
 });
 })
 $(function() {
-  $(function () {
+     $(function () {
             $('.VAT, .subtot, .grdtot').prop('readonly', true);
             var $tblrows = $("#tblProducts tbody tr");
 
@@ -54,7 +54,27 @@ $(function() {
 
                 $tblrow.find('.amount, .vat').on('change', function () {
 
-                
+                    var qty = $tblrow.find("[ip=ant]").val();
+                    if( qty.length == 0 ){
+                    var qty =0;
+                     };
+                    if ( $( "[ip=price]" ).length == 0 ){
+                    var qty =0;
+                     };
+                   if ($tblrow.find("[ip=ant]").val().length > 0){
+                      
+                      };
+                   var das = $tblrow.find("[ip=price]");
+                    if (das.length == 0) {
+                    var qty =0;
+                    alert("Element was removed");
+                     };
+                    $(".vat").on("remove", function () {
+                    alert("Element was removed");
+                     })
+                  
+                    var price = $tblrow.find("[ip=price]").val();
+                    var subTotal = parseInt(qty, 10) * parseFloat(price);
                     if (!isNaN(subTotal)) {
 
                         $tblrow.find('.subtot').val(subTotal.toFixed(2));
@@ -70,9 +90,8 @@ $(function() {
                 });
             });
         });
-});
 $(function() {
-  $(function () {
+   $(function () {
             $('.VAT, .subtot, .grdtot, .total, .subtot, .plus, .pluses').prop('readonly', true);
             var $tblrows = $("#tblProducts tbody tr");
 
@@ -86,14 +105,13 @@ $(function() {
                     var qty =0;
                      };
                     var price = $tblrow.find("[ip=total]").val();
-                    var subTotal = parseInt(qty, 10) * parseFloat(price) * 0.01;
+                    var subTotal = parseFloat(qty, 10) * parseInt(price) * 0.01;
                     if (!isNaN(subTotal)) {
-
-                        
+                    $tblrow.find('.white').val(subTotal.toFixed(2));
                         var grandTotal = 0;
 
-                        $(".total").each(function () {
-                            var stval = subTotal;
+                       $(".white").each(function () {
+                            var stval = parseFloat($(this).val()); ;
                             grandTotal += isNaN(stval) ? 0 : stval;
                         });
 
@@ -105,4 +123,3 @@ $(function() {
                 });
             });
         });
-})

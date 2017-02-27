@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  root 'clients#index'
   resources :invoices
   resources :clients
    post "clients/new"
   resources :invoices do
     resources :comments
   end
+ 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
