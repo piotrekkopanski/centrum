@@ -14,3 +14,5 @@
  *= require_self
 *= require effective_form_inputs
  */
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
