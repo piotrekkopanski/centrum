@@ -9,6 +9,10 @@ gem 'rails_12factor'
  group :production do
   gem 'pg'
 end
+
+group :assets do
+  gem 'jquery-ui-rails', :git => 'https://github.com/joliss/jquery-ui-rails'
+end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
