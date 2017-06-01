@@ -1,2 +1,2 @@
 
-Website can help create invoices 
+Website help create and print invoices
